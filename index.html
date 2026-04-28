@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Solicitação de Eventos</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+
+  <div class="bg-grid"></div>
+
+  <main class="container">
+
+    <header class="hero">
+      <div class="hero-badge">✦ Sistema de Eventos</div>
+      <h1>Solicitação<br/><span class="accent">de Evento</span></h1>
+      <p class="subtitle">Preencha o formulário e os líderes de cada ministério acionado serão notificados automaticamente.</p>
+    </header>
+
+    <form id="eventForm" novalidate>
+
+      <!-- BLOCO 1: DADOS DO EVENTO -->
+      <section class="card" data-step="1">
+        <div class="card-label">01 — Informações do Evento</div>
+
+        <div class="field-group two-col">
+          <div class="field">
+            <label for="eventName">Nome do Evento *</label>
+            <input type="text" id="eventName" name="eventName" placeholder="Ex: Culto de Celebração, Retiro de Jovens..." required />
+          </div>
+          <div class="field">
+            <label for="requesterName">Nome do Responsável *</label>
+            <input type="text" id="requesterName" name="requesterName" placeholder="Nome completo" required />
+          </div>
+        </div>
+
+        <div class="field-group two-col">
+          <div class="field">
+            <label for="requesterPhone">Contato (WhatsApp) *</label>
+            <input type="tel" id="requesterPhone" name="requesterPhone" placeholder="(21) 99999-9999" required />
+          </div>
+          <div class="field">
+            <label for="requesterEmail">E-mail do Responsável</label>
+            <input type="email" id="requesterEmail" name="requesterEmail" placeholder="seu@email.com" />
+          </div>
+        </div>
+
+        <div class="field-group two-col">
+          <div class="field">
+            <label for="eventDateStart">Data e Hora de Início *</label>
+            <input type="datetime-local" id="eventDateStart" name="eventDateStart" required />
+          </div>
+          <div class="field">
+            <label for="eventDateEnd">Data e Hora do Fim *</label>
+            <input type="datetime-local" id="eventDateEnd" name="eventDateEnd" required />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="eventObjective">Objetivo do Evento e Mais Informações *</label>
+          <textarea id="eventObjective" name="eventObjective" placeholder="Descreva o objetivo do evento, público-alvo, programação prevista, necessidades especiais..." required></textarea>
+        </div>
+
+      </section>
+
+      <!-- BLOCO 2: LOCAL -->
+      <section class="card" data-step="2">
+        <div class="card-label">02 — Local do Evento</div>
+        <p class="card-hint">Selecione o(s) espaço(s) que serão utilizados. Você pode marcar mais de um.</p>
+
+        <div class="locations-grid" id="locationsGrid"></div>
+
+        <div class="no-service-warning" id="noLocationWarning" style="display:none">
+          ⚠️ Selecione pelo menos um local para continuar.
+        </div>
+      </section>
+
+      <!-- BLOCO 3: MINISTÉRIOS -->
+      <section class="card" data-step="3">
+        <div class="card-label">03 — Ministérios a Acionar</div>
+        <p class="card-hint">Marque todos os ministérios que precisam ser envolvidos. Cada líder será notificado individualmente.</p>
+
+        <div class="services-grid" id="servicesGrid"></div>
+
+        <div class="no-service-warning" id="noServiceWarning" style="display:none">
+          ⚠️ Selecione pelo menos um ministério para continuar.
+        </div>
+      </section>
+
+      <!-- BLOCO 4: OBSERVAÇÕES POR MINISTÉRIO -->
+      <section class="card" id="serviceNotesSection" style="display:none" data-step="4">
+        <div class="card-label">04 — Observações por Ministério</div>
+        <p class="card-hint">Adicione orientações específicas para cada ministério selecionado (opcional).</p>
+        <div id="serviceNotes"></div>
+      </section>
+
+      <!-- BOTÃO -->
+      <div class="submit-area">
+        <button type="submit" class="btn-submit" id="submitBtn">
+          <span class="btn-text">Enviar Solicitação</span>
+          <span class="btn-icon">→</span>
+        </button>
+        <p class="submit-hint">Após o envio, cada ministério selecionado receberá uma notificação por e-mail e WhatsApp.</p>
+      </div>
+
+    </form>
+
+    <!-- SUCESSO -->
+    <div class="success-screen" id="successScreen" style="display:none">
+      <div class="success-icon">✓</div>
+      <h2>Solicitação Enviada!</h2>
+      <p id="successMessage"></p>
+      <div id="whatsappLinks"></div>
+      <button class="btn-new" onclick="resetForm()">Fazer nova solicitação</button>
+    </div>
+
+  </main>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
