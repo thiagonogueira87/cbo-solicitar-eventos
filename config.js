@@ -7,9 +7,9 @@
 // Crie conta gratuita em https://emailjs.com
 // Preencha os 3 valores abaixo após criar sua conta
 const EMAILJS_CONFIG = {
-  publicKey:  "SEU_PUBLIC_KEY_AQUI",      // Account > API Keys
-  serviceId:  "SEU_SERVICE_ID_AQUI",      // Email Services > Service ID
-  templateId: "SEU_TEMPLATE_ID_AQUI",     // Email Templates > Template ID
+  publicKey:  "_9AZxEYMoE9DNWHvD",      // Account > API Keys
+  serviceId:  "service_oyvsa1v",      // Email Services > Service ID
+  templateId: "template_35rd8cs",     // Email Templates > Template ID
 };
 
 // --- LOCAIS DISPONÍVEIS ---
