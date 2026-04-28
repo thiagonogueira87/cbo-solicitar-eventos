@@ -1,0 +1,131 @@
+🎉 Formulário de Solicitação de Eventos
+Site com formulário que notifica automaticamente os líderes de cada ministério por e-mail e WhatsApp conforme os ministérios selecionados.
+
+🚀 Como publicar no GitHub Pages (passo a passo)
+1. Crie um repositório no GitHub
+
+Acesse github.com e faça login
+Clique em "New repository" (botão verde ou ícone +)
+Dê um nome, ex: solicitacao-eventos
+Marque como Public
+Clique em "Create repository"
+
+2. Faça upload dos arquivos
+Na página do repositório recém-criado:
+
+Clique em "uploading an existing file"
+Selecione os 4 arquivos:
+
+index.html
+style.css
+app.js
+config.js
+
+
+Clique em "Commit changes"
+
+3. Ative o GitHub Pages
+
+Vá em Settings (aba no topo do repositório)
+No menu lateral, clique em Pages
+Em "Branch", selecione main → / (root)
+Clique em Save
+Aguarde ~1 minuto e acesse a URL gerada:
+
+   https://SEU_USUARIO.github.io/solicitacao-eventos/
+
+⚙️ Configurar o EmailJS (envio de e-mails gratuito)
+Passo 1 — Criar conta
+Acesse emailjs.com e crie uma conta gratuita (200 e-mails/mês).
+Passo 2 — Conectar seu e-mail
+Vá em Email Services → Add New Service, conecte seu Gmail ou Outlook e anote o Service ID.
+Passo 3 — Criar o template de e-mail
+Vá em Email Templates → Create New Template e configure assim:
+Subject:
+[{{org_name}}] Nova solicitação — {{ministry_name}} | Evento: {{event_name}}
+Body:
+Olá {{to_name}},
+
+Você recebeu uma nova solicitação de evento que envolve o ministério de {{ministry_name}}.
+
+━━━━━━━━━━━━━━━━━━━━━━━
+📋 DADOS DO EVENTO
+━━━━━━━━━━━━━━━━━━━━━━━
+🎉 Evento:         {{event_name}}
+📅 Início:         {{event_date_start}}
+🔚 Fim:            {{event_date_end}}
+📍 Local(is):      {{event_locations}}
+
+📝 Objetivo e informações:
+{{event_objective}}
+
+━━━━━━━━━━━━━━━━━━━━━━━
+🙏 MINISTÉRIO: {{ministry_name}}
+━━━━━━━━━━━━━━━━━━━━━━━
+Orientações específicas para sua equipe:
+{{ministry_notes}}
+
+━━━━━━━━━━━━━━━━━━━━━━━
+👤 RESPONSÁVEL PELO EVENTO
+━━━━━━━━━━━━━━━━━━━━━━━
+Nome:      {{requester_name}}
+WhatsApp:  {{requester_phone}}
+E-mail:    {{requester_email}}
+
+━━━━━━━━━━━━━━━━━━━━━━━
+
+Entre em contato com o responsável para confirmar a disponibilidade da equipe.
+
+{{org_name}}
+
+Em "To email": {{to_email}}
+Em "To name": {{to_name}}
+
+Salve e anote o Template ID.
+Passo 4 — Pegar a Public Key
+Vá em Account → API Keys e copie a Public Key.
+Passo 5 — Atualizar o config.js
+javascriptconst EMAILJS_CONFIG = {
+  publicKey:  "SUA_PUBLIC_KEY",
+  serviceId:  "SEU_SERVICE_ID",
+  templateId: "SEU_TEMPLATE_ID",
+};
+
+👥 Como editar os ministérios
+Abra config.js e edite o array SERVICES:
+javascript{
+  id:          "louvor",                     // identificador único
+  label:       "Louvor",                     // nome exibido no formulário
+  icon:        "🎶",                          // emoji
+  leaderName:  "Nome do Líder",              // nome do responsável
+  email:       "louvor@suaigreja.com",       // e-mail que receberá o alerta
+  whatsapp:    "5521999990005",              // número com DDI (55 = Brasil)
+                                             // deixe "" para não gerar link WA
+},
+🏛️ Como editar os locais
+Abra config.js e edite o array LOCATIONS:
+javascript{ id: "templo_maior", label: "Templo Maior", icon: "⛪" },
+
+📁 Estrutura de arquivos
+solicitacao-eventos/
+├── index.html    → Estrutura da página
+├── style.css     → Visual / design
+├── config.js     → ⚙️ EDITE AQUI (ministérios, locais, EmailJS)
+├── app.js        → Lógica (não precisa editar)
+└── README.md     → Este arquivo
+
+❓ Dúvidas frequentes
+O e-mail não está chegando?
+
+Verifique as 3 chaves do EmailJS no config.js
+Confira a pasta de spam
+Veja "Email Logs" no painel do EmailJS
+
+Como atualizar o site após publicar?
+
+Acesse o repositório no GitHub, clique no arquivo → ícone de lápis → edite → "Commit changes"
+O site atualiza em ~1 minuto
+
+Posso usar meu próprio domínio?
+
+Sim! Em Settings → Pages → Custom domain
