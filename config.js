@@ -83,9 +83,9 @@ const SERVICES = [
     id:          "juventude",
     label:       "Juventude",
     icon:        "⚡",
-    leaderName:  "Líder da Juventude",
-    email:       "juventude@suaigreja.com",
-    whatsapp:    "5521999990006",
+    leaderName:  "Pr. Thiago",
+    email:       "thiago.thinog@gmail.com",
+    whatsapp:    "5521983879944",
   },
   {
     id:          "mulheres",
